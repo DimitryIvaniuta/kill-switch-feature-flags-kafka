@@ -1,0 +1,31 @@
+[versions]
+java = "21"
+lombok = "1.18.36"
+testcontainers = "1.21.3"
+redis-testcontainers = "2.2.4"
+awaitility = "4.2.1"
+caffeine = "3.1.8"
+
+[libraries]
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-aop = { module = "org.springframework.boot:spring-boot-starter-aop" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis" }
+
+spring-kafka = { module = "org.springframework.kafka:spring-kafka" }
+flyway-core = { module = "org.flywaydb:flyway-core" }
+postgresql = { module = "org.postgresql:postgresql" }
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-kafka-test = { module = "org.springframework.kafka:spring-kafka-test" }
+testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-kafka = { module = "org.testcontainers:kafka", version.ref = "testcontainers" }
+testcontainers-redis = { module = "com.redis:testcontainers-redis", version.ref = "redis-testcontainers" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }

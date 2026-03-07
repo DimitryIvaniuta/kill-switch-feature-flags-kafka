@@ -1,0 +1,57 @@
+plugins {
+  id "org.springframework.boot" version "3.5.11"
+  id "io.spring.dependency-management" version "1.1.7"
+  id "java"
+}
+
+group = "com.github.dimitryivaniuta"
+version = "1.0.0"
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+dependencies {
+  implementation libs.spring.boot.starter.web
+  implementation libs.spring.boot.starter.validation
+  implementation libs.spring.boot.starter.actuator
+  implementation libs.micrometer.registry.prometheus
+  implementation libs.spring.boot.starter.aop
+  implementation libs.spring.boot.starter.data.jpa
+  implementation libs.spring.boot.starter.data.redis
+  implementation libs.spring.kafka
+  implementation libs.flyway.core
+  implementation libs.caffeine
+
+  runtimeOnly libs.postgresql
+
+  compileOnly libs.lombok
+  annotationProcessor libs.lombok
+
+  testCompileOnly libs.lombok
+  testAnnotationProcessor libs.lombok
+
+  testImplementation libs.spring.boot.starter.test
+  testImplementation libs.spring.kafka.test
+  testImplementation libs.testcontainers.junit
+  testImplementation libs.testcontainers.postgres
+  testImplementation libs.testcontainers.kafka
+  testImplementation libs.testcontainers.redis
+  testImplementation libs.awaitility
+}
+
+tasks.withType(Test).configureEach {
+  useJUnitPlatform()
+}
+
+tasks.named("bootJar") {
+  archiveFileName = "kill-switch-feature-flags-kafka.jar"
+}
