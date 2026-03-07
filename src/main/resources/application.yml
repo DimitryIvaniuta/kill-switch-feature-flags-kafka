@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: kill-switch-feature-flags-kafka
+  datasource:
+    url: jdbc:postgresql://localhost:5432/killswitch
+    username: killswitch
+    password: killswitch
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: kill-switch-feature-flags-kafka
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.github.dimitryivaniuta.gateway.killswitch.messaging"
+        spring.json.value.default.type: "com.github.dimitryivaniuta.gateway.killswitch.messaging.FeatureFlagChangedEvent"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+killswitch:
+  kafka:
+    topic: feature-flags.v1
+  cache:
+    local-ttl: 2s
+    redis-ttl: 10s
+  defaults:
+    enabled-if-missing: true
+  outbox:
+    publish-fixed-delay: 1s
+    max-attempts: 100
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+logging:
+  level:
+    root: INFO
