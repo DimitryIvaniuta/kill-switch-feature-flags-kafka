@@ -1,0 +1,181 @@
+{
+  "info": {
+    "name": "Kill Switch Feature Flags (Kafka)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get flag",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/admin/flags/RISKY_RESPONSE",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "flags",
+            "RISKY_RESPONSE"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Is enabled",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/admin/flags/RISKY_RESPONSE",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "flags",
+            "RISKY_RESPONSE"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Disable risky response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"enabled\": false,\n  \"changedBy\": \"ops\",\n  \"reason\": \"incident\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/admin/flags/RISKY_RESPONSE",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "flags",
+            "RISKY_RESPONSE"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rollback risky response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"changedBy\": \"ops\",\n  \"reason\": \"rollback\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/admin/flags/RISKY_RESPONSE/rollback",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "flags",
+            "RISKY_RESPONSE",
+            "rollback"
+          ]
+        }
+      }
+    },
+    {
+      "name": "History",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/admin/flags/RISKY_RESPONSE/audit",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "flags",
+            "RISKY_RESPONSE",
+            "audit"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Call risky endpoint",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Correlation-Id",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/risky/quote",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "risky",
+            "quote"
+          ]
+        }
+      }
+    }
+  ]
+}
